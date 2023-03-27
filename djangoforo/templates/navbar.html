@@ -1,0 +1,75 @@
+<nav class="bg-oscuro px-4 py-3">
+    <div class="flex justify-between items-center">
+        <a href="/" class="text-xl  font-semibold font-mono text-claro">HOME</a>
+        <div class="hidden m-2 md:flex">
+            <form class="m-2" method="GET" action="{% url 'search' %}">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        </svg>
+                    </div>
+                    <input  name="query" class="block w-full p-4 pl-10 text-sm rounded-lg" placeholder="Search here...">
+                </div>
+            </form>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout_user' %}" class="px-5 py-3 m-2 block font-mono font-semiblod text-negro rounded-lg bg-claro">
+                    LOGOUT
+                </a>
+                <a href="{% url 'create_room' %}" class="px-5 py-3 m-2 block font-mono font-semiblod text-negro rounded-lg bg-rosa">
+                    CREATE
+                </a>
+            {% else %}
+                <a href="{% url 'register_page' %}" class="px-5 py-3 m-2 block font-mono font-semiblod text-negro rounded-lg bg-claro">
+                    REGISTER
+                </a>
+                <a href="{% url 'login_page' %}" class="px-5 py-3 m-2 block font-mono font-semiblod text-negro rounded-lg bg-rosa">
+                    LOGIN
+                </a>
+            {% endif %}
+
+
+        </div>
+
+        <div class="flex">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'my_profile' %}" class="mr-5">
+                    <img  class="w-11 h-11 rounded-full" src="{{ user.avatar.url }}" alt="{{ user.username }}">
+                </a>
+            {% else %}
+            {% endif %}
+            
+            <button data-mobile-menu class="text-claro px-2 m-5 ml-5 py-1 md:hidden">
+                <svg class="h-8 w-8 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <line x1="3" y1="12" x2="21" y2="12" />  <line x1="3" y1="6" x2="21" y2="6" />  <line x1="3" y1="18" x2="21" y2="18" /></svg>
+            </button>
+        </div>   
+    </div>
+
+    <div class="hidden" id="mobile-menu">
+        <form class="m-2" method="GET" action="{% url 'search' %}">
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </div>
+                <input  name="query" class="block w-full p-4 pl-10 text-sm rounded-lg" placeholder="Search here...">
+            </div>
+        </form>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout_user' %}" class="px-5 py-3 m-2 block font-mono font-semiblod text-negro rounded-lg bg-claro">
+                    LOGOUT
+                </a>
+                <a href="{% url 'create_room' %}" class="px-5 py-3 m-2 block font-mono font-semiblod text-negro rounded-lg bg-rosa">
+                    CREATE
+                </a>
+            {% else %}
+                <a href="{% url 'register_page' %}" class="px-5 py-3 m-2 block font-mono font-semiblod text-negro rounded-lg bg-claro">
+                    REGISTER
+                </a>
+                <a href="{% url 'login_page' %}" class="px-5 py-3 m-2 block font-mono font-semiblod text-negro rounded-lg bg-rosa">
+                    LOGIN
+                </a>
+            {% endif %}
+    </div>
+</nav>

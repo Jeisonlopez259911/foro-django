@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load  static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://cdn.tailwindcss.com'></script>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <title> {% block title %} {% endblock %} | Django Foro </title>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'verde': '#7aacb3',
+                        'mate': '#4c6e81',
+                        'rosa': '#cf8da7',
+                        'rojo': '#aa5377',
+                        'oscuro': '#3b3759',
+                        'claro': '#f7ece1',
+                        'negro': '#000000'
+                    }
+                }
+            }
+        }
+    </script>
+
+</head>
+<body class="bg-mate">
+    {% include 'navbar.html' %}
+    <div class="container mx-auto">
+        {% if messages %}
+            {% for message in messages %}
+                <div  id="alerta" class="flex p-4 bg-rosa rounded-lg">
+                    <svg class="h-8 w-8 text-black"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <circle cx="12" cy="12" r="10" />  <line x1="12" y1="16" x2="12" y2="12" />  <line x1="12" y1="8" x2="12.01" y2="8" /></svg>
+                    <div class="ml-3 font-semibold font-mono text-negro">
+                        {{message}}
+                    </div>
+                    <button close class="ml-auto bg-claro text-negro rounded-full w-8 h-8 p-1.5">
+                        <svg class="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    {% block scripts %}
+    {% endblock %}
+
+    <script src="{% static 'js/main.js' %}" ></script>
+</body>
+</html>
