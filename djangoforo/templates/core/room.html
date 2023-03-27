@@ -46,7 +46,7 @@
     {% block scripts %}
 
     {{ room.id|json_script:"json-roomid" }}
-    {{ request.user.userneme|json_script:"json-username"}}
+    {{ request.user.username|json_script:"json-username"}}
 
     {% endblock %}
 
