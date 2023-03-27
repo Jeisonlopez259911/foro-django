@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 from .models import User
 from .forms import RegisterUeserForm, UpdateUserForm
 
+@login_required
 def update_profile(request):
     user = request.user
     form = UpdateUserForm(instance=user)
@@ -19,12 +22,13 @@ def update_profile(request):
             messages.success(request, "Ups... Somthing went wrong!")
     return render(request, 'users/update_profile.html', {"form": form})
 
+@login_required
 def profiles(request, pk):
     user = User.objects.get(pk=pk)
     rooms = user.room_set.all()
     return render(request, 'users/profiles.html', {'user':user, 'rooms':rooms})
 
-
+@login_required
 def my_profile(request):
     user = request.user
     rooms = user.room_set.all()

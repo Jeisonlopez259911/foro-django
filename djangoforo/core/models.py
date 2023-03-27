@@ -6,6 +6,9 @@ class Room(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     like = models.ManyToManyField(User, related_name='like', default=None, blank=True)
 
+    class Meta:
+        ordering = ['-id']
+
     @property
     def num_likes(self):
         return self.like.all().count()

@@ -23,7 +23,7 @@
                         {% else %}
                         <li class="flex justify-start">
                             <div class="relative max-w-xl px-4 py-2 font-mono bg-rosa text-negro rounded-lg">
-                                <span class="block">{{message.content}}</span>
+                                <span class="block"> {{message.user.username}} : {{message.content}}</span>
                             </div>
                         </li>
                         {% endif %}
